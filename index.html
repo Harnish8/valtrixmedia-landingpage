@@ -939,12 +939,8 @@
     <script>
   window.addEventListener("message", function (event) {
     if (!Array.isArray(event.data)) return;
-
     const [eventName, subType, payload] = event.data;
-
     if (eventName === "set-sticky-contacts" && subType === "_ud" && typeof payload === "string") {
-      console.log("Form submit detected:", payload); // keep this for one more test, remove after confirming
-      document.getElementById("calendar-locked").classList.add("hidden");
       document.getElementById("calendar").classList.remove("hidden");
       document.getElementById("calendar").scrollIntoView({ behavior: "smooth" });
     }
