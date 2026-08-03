@@ -930,17 +930,24 @@
             .forEach((i) => i.classList.remove("open"));
           if (!wasOpen) item.classList.add("open");
         });
-      });
+      });<script>
+  window.addEventListener("message", function (event) {
+    if (!Array.isArray(event.data)) return;
+
+    const [eventName, subType, payload] = event.data;
+
+    if (eventName === "set-sticky-contacts" && subType === "_ud" && typeof payload === "string") {
+      console.log("Form submit detected:", payload);
+      document.getElementById("calendar").classList.remove("hidden");
+      document.getElementById("calendar").scrollIntoView({ behavior: "smooth" });
+    }
+  });
+</script>
 
       // Form submit
       // (handled by GoHighLevel's embedded form — see form_embed.js below)
     </script>
     <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-    <script>
-  window.addEventListener("message", function (event) {
-    if (typeof event.data !== "object" || !event.data) return;
-    console.log("GHL message received:", event.data);
-  });
-</script>
+    
   </body>
 </html>
